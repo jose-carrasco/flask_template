@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block template %}
+
+    <script>
+        $().ready(function () {
+            populateTableData("content", "users");
+        });
+
+        function populateTableData(objectId, serviceName) {
+            var urlService = '/services/' + serviceName;
+            $.get(urlService).done(function (data) {
+                var response = jQuery.parseJSON(data);
+                if (response.status) {
+                    $('#' + objectId).empty();
+                    var html = "";
+                    jQuery.each(response.data, function (i, item) {
+                        html = "<tr>";
+                        html += fillTd(item.complete_name);
+                        html += fillTd(item.email);
+                        html += "</tr>";
+                        $('#' + objectId).append(html);
+                    });
+                }
+                else {
+                    console.log(response.message);
+                }
+            }).fail(function () {
+                console.log(response.message);
+            });
+        }
+
+        function fillTd(value) {
+            return "<td>" + value + "</td>";
+        }
+
+    </script>
+
+    <h1>Users</h1>
+    <p>
+        <a href="/">Return to Home Page</a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>E-mail</th>
+        </tr>
+        <tbody id="content">
+
+        </tbody>
+
+    </table>
+{% endblock %}

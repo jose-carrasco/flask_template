@@ -1,0 +1,138 @@
+<article class="step step5">
+
+    <form class="twelve-cols" id="register" action="/register" method="post" name="register" role="form">
+
+        <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
+
+        <div class="rowForm three-cols">
+            <label>Título</label>
+
+            <div class="filtroSelect two-cols" style="width:90px;">
+                <div class="selectDiv selectType3">
+                    {{ form.prefix(class='select') }}
+                </div>
+            </div>
+        </div>
+        <div class="rowForm three-cols">
+            <label>Nombre</label>
+            {{form.name(class='input')}}
+        </div>
+        <div class="rowForm three-cols">
+            <label>Segundo Nombre</label>
+            {{form.middleName(class='input')}}
+        </div>
+        <div class="rowForm three-cols">
+            <label>Apellido (s)</label>
+            {{form.lastName(class='input')}}
+        </div>
+        <div class="rowForm three-cols">
+            <label>Género</label>
+
+            <div class="filtroSelect two-cols" style="width:90px;">
+                <div class="selectDiv selectType3">
+                    {{ form.gender(class='select') }}
+                </div>
+            </div>
+        </div>
+        <div class="rowForm six-cols">
+            <label>Fecha de nacimiento</label>
+
+            <div class="filtroSelect two-cols">
+                <div class="selectDiv selectType3">
+                    {{ form.birthDay(class='select') }}
+
+                </div>
+            </div>
+            <div class="filtroSelect two-cols">
+                <div class="selectDiv selectType3">
+                    {{ form.birthMonth(class='select') }}
+                </div>
+            </div>
+            <div class="filtroSelect two-cols">
+                <div class="selectDiv selectType3">
+                    {{ form.birthYear(class='select') }}
+                </div>
+            </div>
+        </div>
+        <div class="rowForm three-cols">
+            <label>Nacionalidad</label>
+            {{form.nationality(class='input') }}
+        </div>
+        <div class="rowForm four-cols">
+            <label>Teléfono</label>
+            {{form.codeArea(class="input one-cols", size="3") }}
+            <span>-</span>
+            {{form.telephone(class="input one-three-cols", style="width:120px", size="7") }}
+        </div>
+        <div class="rowForm four-cols">
+            <label>Correo electrónico</label>
+            {{form.mail(class='input')}}
+        </div>
+        <div class="rowForm four-cols">
+            <label>Confirmación correo electrónico</label>
+            {{form.confirmMail(class='input')}}
+        </div>
+
+        <div class="row rowerror">
+            <p>
+                {% for error in form.prefix.errors %}
+                <span class="errorMessage">{{ error }}</span><br>
+                {% endfor %}
+                {% for error in form.name.errors %}
+                <span class="errorMessage">{{ error }}</span><br>
+                {% endfor %}
+                {% for error in form.lastName.errors %}
+                <span class="errorMessage">{{ error }}</span><br>
+                {% endfor %}
+                {% for error in form.gender.errors %}
+                <span class="errorMessage">{{ error }}</span><br>
+                {% endfor %}
+                {% for error in form.birthDay.errors %}
+                <span class="errorMessage">{{ error }}</span><br>
+                {% endfor %}
+                {% for error in form.birthMonth.errors %}
+                <span class="errorMessage">{{ error }}</span><br>
+                {% endfor %}
+                {% for error in form.birthYear.errors %}
+                <span class="errorMessage">{{ error }}</span><br>
+                {% endfor %}
+                {% for error in form.nationality.errors %}
+                <span class="errorMessage">{{ error }}</span><br>
+                {% endfor %}
+                {% for error in form.codeArea.errors %}
+                <span class="errorMessage">{{ error }}</span><br>
+                {% endfor %}
+                {% for error in form.telephone.errors %}
+                <span class="errorMessage">{{ error }}</span><br>
+                {% endfor %}
+                {% for error in form.mail.errors %}
+                <span class="errorMessage">{{ error }}</span><br>
+                {% endfor %}
+                {% for error in form.confirmMail.errors %}
+                <span class="errorMessage">{{ error }}</span><br>
+                {% endfor %}
+                {% if errors %}
+                {% for error in errors %}
+                <span class="errorMessage">{{ error.decode('utf-8') }}</span><br>
+                {% endfor %}
+                {% endif %}
+            </p>
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="row listNotifications">
+            {% for message in messages %}
+            <p class="item">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <div class="rowForm rowCenterBtns">
+            <input class="input" type="submit" name="" value="Enviar">
+        </div>
+    </form>
+
+</article>
+

@@ -1,0 +1,23 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+
+{% block styles %}
+{{super()}}
+
+    <script src="/static/js/jquery-2.1.3.min.js" type="text/javascript" language="javascript"></script>
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+  {% block template %}{% endblock %}
+  <div class="jumbotron">
+</div>
+{% endblock %}
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+{% endblock %}
